@@ -9,6 +9,10 @@ package Modelo;
 
 import cache.MainCache;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.jcs.access.exception.CacheException;
+import org.apache.jcs.access.exception.ObjectExistsException;
 
 
 /**
@@ -79,6 +83,7 @@ public class AdminVotos extends Modelo {
     public void agregarCandidatos(String nombre) {
         Candidato temp = new Candidato(nombre);
         ((ArrayList<Candidato>) super.getDatos()).add(temp);
+        llamarCache(temp);
         notificarObservadoresEvento(0);
     }
 
@@ -93,8 +98,14 @@ public class AdminVotos extends Modelo {
     }
     
     public void llamarCache(Candidato candidato){
-        MainCache mainCache = new MainCache();
-        mainCache.putInCache(candidato);
+        try {
+            MainCache mainCache = new MainCache();
+            mainCache.putInCache(candidato);
+        }catch(ObjectExistsException ex){
+            System.out.print("Error de duplicacion de objetos.\n");
+        }catch (CacheException ex) {
+            Logger.getLogger(AdminVotos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 

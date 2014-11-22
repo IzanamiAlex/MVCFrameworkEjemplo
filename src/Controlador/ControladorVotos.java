@@ -10,7 +10,6 @@ import Modelo.AdminVotos;
 import Modelo.Candidato;
 import Vista.VentanaPrincipal;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *

@@ -5,10 +5,11 @@
  */
 
 
+import Controlador.ControladorVotos;
 import Modelo.AdminVotos;
-import Controlador.*;
-import Modelo.*;
-import Vista.*;
+import Vista.Barras;
+import Vista.Numeros;
+import Vista.Pastel;
 
 /**
  *
